@@ -17,26 +17,25 @@ Please note: at the time of writing this, Rhino requires the beta version to be 
 
 Note for Servers: Every player must have these three mods on their own PC to join the server, or they will get a Registry Mismatch or Unknown Keys error.
 
-Step 2: Create the Script
-The location of the script depends on how you are playing:
+Step 2: Download or Create the Script
+You can either download the fix_map_lag.js file directly from this repository and follow the steps below to place it in the right location or follow the steps below that to create it manually.
 
 For Servers:
 Navigate to your dedicated server folder. Go to kubejs/server_scripts/.
-For servers the players dont need the script in their profile/game files, it only needs to be in the server's files.
+Note: For servers, the players do not need the script in their personal game files; it only needs to be in the server's files.
 
 For Singleplayer:
-Navigate to your local Minecraft instance folder (where your mods and saves are). Go to kubejs/server_scripts/.
+Navigate to your local Minecraft instance folder (where your mods and saves folders are located). Go to kubejs/server_scripts/.
 
-How to create the file:
-
+How to create the file manually:
 Inside the server_scripts folder, right-click and create a New Text Document.
 
-Rename it to fix_map_lag.js (ensure the .txt extension is removed, to do this, make sure extensions are visible in your file explorer, you dont want it to be fix_map_lag.js.txt).
+Rename it to fix_map_lag.js. (Ensure you have "File name extensions" enabled in your file explorer so the .txt extension is removed; you do not want it to be fix_map_lag.js.txt).
 
-To add the code, right-click the fix_map_lag.js file and select "Open with," then choose Notepad or a similar text editing program.
+To add the code, right-click the fix_map_lag.js file and select Open with, then choose Notepad or a similar text editing program.
 
 Paste the following code into that file and save it:
-
+```
 LootJS.modifiers((event) => {
 // This looks for any loot table categorized as a CHEST (works for vanilla and mods)
 event.addTableModifier(LootType.CHEST)
@@ -45,7 +44,7 @@ event.addTableModifier(LootType.CHEST)
 // Removes the blank maps often found in shipwreck supply chests, this one might not actually be an issue, I haven't tested it.
 .removeLoot(Item.of("minecraft:map"));
 });
-
+```
 Important Version Note: This script is written for Minecraft 1.21.1. If you are using an older version of Minecraft, the LootJS syntax is different. You will need to adapt the function names to match your specific version of the mod. The core concept remains the same.
 
 Step 3: How to Initiate (No Server or Client Restart Required)
